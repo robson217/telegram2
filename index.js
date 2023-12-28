@@ -13,7 +13,7 @@ bot.command("Hi", (ctx) => {
 
 // Handle the /about command
 const aboutUrlKeyboard = new InlineKeyboard().url(
-    "Host your own bot for free.",
+    "Testando 123",
     "https://cyclic.sh/"
   );
   
