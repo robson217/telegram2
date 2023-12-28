@@ -6,8 +6,8 @@ require("dotenv").config() // Criando as variaveis sensiveis do projeto
 const bot = new Bot(process.env.TELEGRAM_TOKEN || '')
 
 // Handle the /yo command to greet the user
-bot.command("yo", (ctx) => {
-    ctx.reply(`Yo ${ctx.from?.first_name}`)
+bot.command("Hi", (ctx) => {
+    ctx.reply(`Hi ${ctx.from?.first_name}`)
     console.log(ctx.from)
 })
 
