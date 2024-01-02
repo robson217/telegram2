@@ -31,7 +31,7 @@ menu.dynamic(async () => {
                 .text(ativo.ativo, async(ctx) => {
                     let texto = await consultaEstruturas.verificaDesmontagem(ativo, 0)
                     ctx.reply(texto)
-                    ctx.deleteMessage()
+                    //ctx.deleteMessage()
                     console.log(ativo)
                 })
                 if ((num % 4) === 0) {
@@ -42,7 +42,7 @@ menu.dynamic(async () => {
     return range;
 })
     .text("Cancelar", 
-        (ctx) => ctx.deleteMessage(),
+        //(ctx) => ctx.deleteMessage(),
         (ctx) => ctx.menu.update()
     )
 bot.use(menu)
@@ -64,7 +64,7 @@ menuM.dynamic(async () => {
                 .text(ativo.ativo, async(ctx) => {
                     let texto = await consultaEstruturas.verificaMontagem(ativo, 0)
                     ctx.reply(texto)
-                    ctx.deleteMessage()
+                    //ctx.deleteMessage()
                     console.log(ativo)
                 })
                 if ((num % 4) === 0) {
@@ -75,7 +75,7 @@ menuM.dynamic(async () => {
     return range;
 })
     .text("Cancelar", 
-        (ctx) => ctx.deleteMessage(),
+        //(ctx) => ctx.deleteMessage(),
         (ctx) => ctx.menu.update()
     )
 bot.use(menuM)
