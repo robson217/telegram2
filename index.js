@@ -107,9 +107,10 @@ async function setIntervalo() { // A cada 14 minutos executa esta função
         }
     } */
 } 
+
+const analise = setInterval(setIntervalo, 60000)//480000
 // Start the server
-if (process.env.NODE_ENV === "production") {
-    const analise = setInterval(setIntervalo, 60000)//480000
+if (process.env.NODE_ENV === "production") {   
     // Use Webhooks for the production server
     const app = express();
     app.use(express.json());
