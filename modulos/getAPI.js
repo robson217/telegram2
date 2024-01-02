@@ -1,5 +1,6 @@
 let XMLHttpRequest = require('xhr2');
 const http = new XMLHttpRequest()
+require("dotenv").config() // Criando as variaveis sensiveis do projeto
 
 async function consulta(ativo) {
     return new Promise (function (resolve, reject) {
@@ -21,7 +22,7 @@ async function consulta(ativo) {
 async function statusMarket() {
     return new Promise (function (resolve, reject) {
         http.open("GET", `https://api.oplab.com.br/v3/market/status`)
-        http.setRequestHeader('Access-Token','L5ItAjqPYm9IFuQhSUsTxRTOwgwDsiUZJZi/lpt/LBCHRvNPcMKwyVclRfX8pGvc--8g2XMF82vo5c4Qp73qxeZQ==--NTAxMjIyZjAwNjg4ZTljN2ZlZTJlYWI2NmNhNTIyYjk=');
+        http.setRequestHeader('Access-Token', process.env.API_TOKEN);
         http.send() 
         http.onload = async() => {
             let status = http.status;

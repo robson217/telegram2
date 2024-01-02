@@ -1,79 +1,124 @@
-const { Bot, InlineKeyboard, webhookCallback } = require ("grammy")
+const { Bot, webhookCallback } = require ("grammy")
 const express = require ("express")
 require("dotenv").config() // Criando as variaveis sensiveis do projeto
+const { Menu, MenuRange } = require("@grammyjs/menu")
 
 // Create a bot using the Telegram token
 const bot = new Bot(process.env.TELEGRAM_TOKEN || '')
 
-const getAPI = require ('./getAPI')
+// Módulos que serão importados da pasta módulos
+const getAPI = require ('./modulos/getAPI')
+const consultaEstruturas = require ('./modulos/consultaEstruturas')
+const variaveis = require ('./modulos/variaveis')
 
-// Handle the /yo command to greet the user
-bot.command("Hi", (ctx) => {
-    ctx.reply(`Hi ${ctx.from?.first_name}`)
-    console.log(ctx.from)
-})
+//**************************************************** *
+// Menu Principal
+const main = new Menu("root-menu")
+    .submenu ("Montadas","desmontar")
+    .submenu("Não Montadas", "montar")
+    .text("Fechar", (ctx) => ctx.deleteMessage())
 
-/*
-// Handle the /about command
-const aboutUrlKeyboard = new InlineKeyboard().url(
-    "Testando 123",
-    "https://cyclic.sh/"
-); */
-  
-  // Suggest commands in the menu
-  bot.api.setMyCommands([
-    { command: "yo", description: "Be greeted by the bot" },
-    {
-      command: "effect",
-      description: "Apply text effects on the text. (usage: /effect [text])",
-    },
-  ]);
-  
-  // Handle all other messages and the /start command
-  const introductionMessage = `Hello! I'm a Telegram bot.
-  I'm powered by Cyclic, the next-generation serverless computing platform.
-  
-  <b>Commands</b>
-  /yo - Be greeted by me
-  /effect [text] - Show a keyboard to apply text effects to [text]`;
-  
-  const replyWithIntro = (ctx) =>
-    ctx.reply(introductionMessage, {
-      reply_markup: aboutUrlKeyboard,
-      parse_mode: "HTML",
-    });
-  
-  bot.command("start", replyWithIntro);
-
-  bot.on("message", (ctx) => {
-    if (ctx.message.text === "Olá") {
-      ctx.reply(`Olá, ${ctx.message.from.first_name}!`);
+//************************************************************************ */
+// Criando um menu de acompanhamento de Desmontagens
+const menu = new Menu("desmontar", { onMenuOutdated: false })
+menu.dynamic(async () => {
+    const range = new MenuRange()
+    let num = 0
+    for (const ativo of variaveis.arrayDesmontagens) {
+        if (ativo.status) {
+            num++
+            range
+                .text(ativo.ativo, async(ctx) => {
+                    let texto = await consultaEstruturas.verificaDesmontagem(ativo, 0)
+                    ctx.reply(texto)
+                    ctx.deleteMessage()
+                    console.log(ativo)
+                })
+                if ((num % 4) === 0) {
+                    range.row()
+                }    
+        }
     }
+    return range;
+})
+    .text("Cancelar", 
+        (ctx) => ctx.deleteMessage(),
+        (ctx) => ctx.menu.update()
+    )
+bot.use(menu)
+
+bot.command("desmontar", async (ctx) => {
+  await ctx.reply("Escolha o ativo montado:", { reply_markup: menu });
+})
+//************************************************************************ */
+
+// Criando um menu de acompanhamento de Desmontagens
+const menuM = new Menu("montar", { onMenuOutdated: false })
+menuM.dynamic(async () => {
+    const range = new MenuRange()
+    let num = 0
+    for (const ativo of variaveis.arrayMontagens) {
+        if (ativo.status) {
+            num++
+            range
+                .text(ativo.ativo, async(ctx) => {
+                    let texto = await consultaEstruturas.verificaMontagem(ativo, 0)
+                    ctx.reply(texto)
+                    ctx.deleteMessage()
+                    console.log(ativo)
+                })
+                if ((num % 4) === 0) {
+                    range.row()
+                }    
+        }
+    }
+    return range;
+})
+    .text("Cancelar", 
+        (ctx) => ctx.deleteMessage(),
+        (ctx) => ctx.menu.update()
+    )
+bot.use(menuM)
+
+bot.command("montar", async (ctx) => {
+    await ctx.reply("Escolha o ativo montado:", { reply_markup: menuM });
+})
+//************************************************************************ */
+
+main.register(menu)
+main.register(menuM)
+bot.use(main)
+
+bot.command("start", async (ctx) => {
+    await ctx.reply("Escolha o ativo montado:", { reply_markup: main });
 })
 
-async function setIntervalo() {
+//****************************************************************** */
+
+// Executa a Analise das Compras combinadas de Call e Put
+async function setIntervalo() { // A cada 14 minutos executa esta função
     let status = await getAPI.statusMarket() // Consulta o status do mercado
-    if (status === 'A' || status === 'P') {
-        await bot.api.sendMessage(process.env.TELEGRAM_USER_ID, "Mercado Aberto")
-    } else {
-        await bot.api.sendMessage(process.env.TELEGRAM_USER_ID, "Mercado Fechado")
-    }
+    if (status === 'A' || status === 'P' || true) {
+        // Avalia desmontagem de Estrutura
+        let ret =  await consultaEstruturas.executar(variaveis.arrayDesmontagens, variaveis.arrayMontagens)
+        if (ret !== "") {
+            await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", ret)
+        }
+    } 
 } 
+const analise = setInterval(setIntervalo, 60000)//480000
 
-  // Start the server
-  if (process.env.NODE_ENV === "production") {
+// Start the server
+if (process.env.NODE_ENV === "production") {
     // Use Webhooks for the production server
     const app = express();
     app.use(express.json());
     app.use(webhookCallback(bot, "express"));
-    
-    const gravacao = setInterval(setIntervalo, 60000)
-
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Bot listening on port ${PORT}`);
     });
-  } else {
+} else {
     // Use Long Polling for development
-    bot.start();
-  }
+    bot.start();  
+}
