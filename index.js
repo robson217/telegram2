@@ -94,10 +94,10 @@ bot.command("start", async (ctx) => {
 })
 
 //****************************************************************** */
-
 // Executa a Analise das Compras combinadas de Call e Put
 async function setIntervalo() { // A cada 14 minutos executa esta função
     await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", "Passou aqui!")
+    /*
     let status = await getAPI.statusMarket() // Consulta o status do mercado
     if (status === 'A' || status === 'P' || true) {
         // Avalia desmontagem de Estrutura
@@ -105,7 +105,7 @@ async function setIntervalo() { // A cada 14 minutos executa esta função
         if (ret !== "") {
             await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", ret)
         }
-    } 
+    } */
 } 
 // Start the server
 if (process.env.NODE_ENV === "production") {
