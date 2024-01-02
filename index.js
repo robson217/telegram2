@@ -97,6 +97,7 @@ bot.command("start", async (ctx) => {
 // Executa a Analise das Compras combinadas de Call e Put
 async function setIntervalo() { // A cada 14 minutos executa esta função
     await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", "Passou aqui!")
+    console.log("Analisando ....")
     /*
     let status = await getAPI.statusMarket() // Consulta o status do mercado
     if (status === 'A' || status === 'P' || true) {
