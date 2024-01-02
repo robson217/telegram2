@@ -42,7 +42,7 @@ menu.dynamic(async () => {
     return range;
 })
     .text("Cancelar", 
-        //(ctx) => ctx.deleteMessage(),
+        (ctx) => ctx.deleteMessage(),
         (ctx) => ctx.menu.update()
     )
 bot.use(menu)
@@ -75,7 +75,7 @@ menuM.dynamic(async () => {
     return range;
 })
     .text("Cancelar", 
-        //(ctx) => ctx.deleteMessage(),
+        (ctx) => ctx.deleteMessage(),
         (ctx) => ctx.menu.update()
     )
 bot.use(menuM)
@@ -97,6 +97,7 @@ bot.command("start", async (ctx) => {
 
 // Executa a Analise das Compras combinadas de Call e Put
 async function setIntervalo() { // A cada 14 minutos executa esta função
+    await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", "Passou aqui!")
     let status = await getAPI.statusMarket() // Consulta o status do mercado
     if (status === 'A' || status === 'P' || true) {
         // Avalia desmontagem de Estrutura
@@ -106,10 +107,9 @@ async function setIntervalo() { // A cada 14 minutos executa esta função
         }
     } 
 } 
-const analise = setInterval(setIntervalo, 60000)//480000
-
 // Start the server
 if (process.env.NODE_ENV === "production") {
+    const analise = setInterval(setIntervalo, 60000)//480000
     // Use Webhooks for the production server
     const app = express();
     app.use(express.json());
