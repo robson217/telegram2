@@ -96,6 +96,7 @@ bot.command("start", async (ctx) => {
 //****************************************************************** */
 let num = 0
 // Executa a Analise das Compras combinadas de Call e Put
+const analise = setInterval(setIntervalo, 10000)//480000
 async function setIntervalo() { // A cada 14 minutos executa esta função
     await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", `Passou aqui! ${num++}`)
     console.log("Analisando ....")
@@ -120,7 +121,6 @@ if (process.env.NODE_ENV === "production") {
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Bot listening on port ${PORT}`);
-      const analise = setInterval(setIntervalo, 10000)//480000
     });
 } else {
     // Use Long Polling for development
