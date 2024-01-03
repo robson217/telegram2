@@ -180,7 +180,7 @@ let suzbM2 = ["SUZBM510", 1, 1, "Compra", "SUZB3"]
 let suzbM = {
     status: true,
     opcoes: [suzbM1, suzbM2],
-    gasto: -4.67,
+    gasto: -0.67,
     ativo: 'SUZB3',
     descricao: 'Compra de Call e Put'
 }
