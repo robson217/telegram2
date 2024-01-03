@@ -67,7 +67,7 @@ async function montaEstrutura(estrutura, num, tipo, symbolAtivo, gasto){
     let texto = 
     `Estrutura ${num}: ${tipo} 
 ${symbolAtivo} = R$ ${preco} e Mont.: R$ ${montagem.toFixed(2)}
-Valor Esperado = R$ ${gasto.toFixed(2)} 
+Valor Esperado = R$ ${gasto} 
 
 ${acaoParcial}
 *************************************`
@@ -219,4 +219,4 @@ module.exports = {
     verificaMontagem: verificaMontagem
 }
 
-//let ret =  executar(variaveis.arrayDesmontagens, variaveis.arrayMontagens)
+let ret =  executar(variaveis.arrayDesmontagens, variaveis.arrayMontagens)
