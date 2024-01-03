@@ -159,7 +159,7 @@ async function verificaDesmontagem(estrutura, num) {
     for (const opt of estrutura.opcoes){
         arrayEst.push(await montaOpcao(opt))
     }
-    let result = await desmontaEstrutura(arrayEst, num, estrutura.descricao, estrutura.ativo, estrutura.gasto)
+    let result = await desmontaEstrutura(arrayEst, num, estrutura.descricao, estrutura.ativo)
     console.log(result.texto)
     return result.texto
 }
@@ -169,7 +169,7 @@ async function verificaMontagem(estrutura, num) {
     for (const opt of estrutura.opcoes) {
         arrayEst.push(await montaOpcao(opt))
     }
-    let result = await montaEstrutura(arrayEst, num, estrutura.descricao, estrutura.ativo)
+    let result = await montaEstrutura(arrayEst, num, estrutura.descricao, estrutura.ativo, estrutura.gasto)
     console.log(result.texto)
     return result.texto
 }
