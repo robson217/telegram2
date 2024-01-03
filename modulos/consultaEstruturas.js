@@ -47,7 +47,6 @@ async function montaOpcao(ativo) {
 }
 
 async function montaEstrutura(estrutura, num, tipo, symbolAtivo, gasto){
-    console.log(gasto)
     let montagem = 0
     let preco = estrutura[0].ativo
     let acaoParcial = ""   
@@ -160,7 +159,7 @@ async function verificaDesmontagem(estrutura, num) {
     for (const opt of estrutura.opcoes){
         arrayEst.push(await montaOpcao(opt))
     }
-    let result = await desmontaEstrutura(arrayEst, num, estrutura.descricao, estrutura.ativo)
+    let result = await desmontaEstrutura(arrayEst, num, estrutura.descricao, estrutura.ativo, estrutura.gasto)
     console.log(result.texto)
     return result.texto
 }
