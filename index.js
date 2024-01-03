@@ -96,20 +96,18 @@ bot.command("start", async (ctx) => {
 //****************************************************************** */
 let num = 0
 // Executa a Analise das Compras combinadas de Call e Put
-/*
-const analise = setInterval(setIntervalo, 10000)//480000
+
+const analise = setInterval(setIntervalo, 480000)//480000
 async function setIntervalo() { // A cada 14 minutos executa esta função
-    await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", `Passou aqui! ${num++}`)
-    console.log("Analisando ....")
     let status = await getAPI.statusMarket() // Consulta o status do mercado
-    if (status === 'A' || status === 'P' || true) {
+    if (status === 'A' || status === 'P') {
         // Avalia desmontagem de Estrutura
         let ret =  await consultaEstruturas.executar(variaveis.arrayDesmontagens, variaveis.arrayMontagens)
         if (ret !== "") {
             await bot.api.sendMessage(process.env.TELEGRAM_USER_ID || "", ret)
         }
-    } 
-} */
+    }
+}
 
 // Start the server
 if (process.env.NODE_ENV === "production") {   
