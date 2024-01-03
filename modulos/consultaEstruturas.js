@@ -67,7 +67,7 @@ async function montaEstrutura(estrutura, num, tipo, symbolAtivo, gasto){
     let texto = 
     `Estrutura ${num}: ${tipo} 
 ${symbolAtivo} = R$ ${preco} e Mont.: R$ ${montagem.toFixed(2)}
-Valor Esperado = R$ ${gasto} 
+Valor Esperado = R$ ${gasto.toFixed(2)} 
 
 ${acaoParcial}
 *************************************`
