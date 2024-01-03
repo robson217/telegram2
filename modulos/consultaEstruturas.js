@@ -47,6 +47,7 @@ async function montaOpcao(ativo) {
 }
 
 async function montaEstrutura(estrutura, num, tipo, symbolAtivo, gasto){
+    console.log(gasto)
     let montagem = 0
     let preco = estrutura[0].ativo
     let acaoParcial = ""   
