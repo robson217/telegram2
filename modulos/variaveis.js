@@ -62,6 +62,7 @@ let bbdcMM1= {
     status: true,
     opcoes: [bbdcM1, bbdcM2],
     gasto: 0.27,
+    ativo: 'BBDC4',
     descricao: 'Compra de Call e Put'
 }
 
@@ -71,6 +72,7 @@ let bbdcMM2 = {
     status: true,
     opcoes: [bbdcM3, bbdcM4],
     gasto: 0.27,
+    ativo: 'BBDC4',
     descricao: 'Compra de Call e Put'
 }
 
