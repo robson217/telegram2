@@ -69,7 +69,7 @@ let bbdcMM1= {
 let bbdcM3 = ["BBDCC164", "Compra", "BBDC4"] 
 let bbdcM4 = ["BBDCB16", "Venda", "BBDC4"]
 let bbdcMM2 = {
-    status: true,
+    status: false,
     opcoes: [bbdcM3, bbdcM4],
     gasto: 0.27,
     ativo: 'BBDC4',
