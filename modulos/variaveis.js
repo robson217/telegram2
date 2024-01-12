@@ -59,7 +59,7 @@ let arrayDesmontagens = [b3saD, ggbrD, abevD, mgluD, valeD]
 let bbdcM1 = ["BBDCC170", "Compra", "BBDC4"] 
 let bbdcM2 = ["BBDCB166", "Venda", "BBDC4"]
 let bbdcMM1= {
-    status: false,
+    status: true,
     opcoes: [bbdcM1, bbdcM2],
     gasto: 0.27,
     descricao: 'Compra de Call e Put'
@@ -68,7 +68,7 @@ let bbdcMM1= {
 let bbdcM3 = ["BBDCC164", "Compra", "BBDC4"] 
 let bbdcM4 = ["BBDCB16", "Venda", "BBDC4"]
 let bbdcMM2 = {
-    status: false,
+    status: true,
     opcoes: [bbdcM3, bbdcM4],
     gasto: 0.27,
     descricao: 'Compra de Call e Put'
