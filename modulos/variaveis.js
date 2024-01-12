@@ -10,16 +10,6 @@ let b3saD = {
     ativo: 'B3SA3',
     descricao: 'Compra de Call e Put'
 }
-// GGBR4
-let ggbrD1 = ["GGBRA248", 100, 0.29, "Compra", "GGBR4"]
-let ggbrD2 = ["GGBRM225", 100, 0.12, "Compra", "GGBR4"]
-let ggbrD = {
-    status: true,
-    opcoes: [ggbrD1, ggbrD2],
-    retorno: 80,
-    ativo: 'GGBR4',
-    descricao: 'Compra de Call e Put'
-}
 // ABEV3
 let abevD1 = ["ABEVA148", 100, 0.08, "Compra", "ABEV3"]
 let abevD2 = ["ABEVM138", 100, 0.11, "Compra", "ABEV3"]
@@ -51,15 +41,26 @@ let valeD = {
     ativo: 'VALE3',
     descricao: 'Seagull'
 }
-let arrayDesmontagens = [b3saD, ggbrD, abevD, mgluD, valeD]
+// Seagull VALE3
+// THL BBDC4 
+let b1 = ["BBDCC170", 500, 0.75, "Venda", "BBDC4"]
+let b2 = ["BBDCB166", 500, 0.55, "Compra", "BBDC4"]
+let bbdcD = {
+    status: true,
+    opcoes: [b1, b2],
+    retorno: 20,
+    ativo: 'BBDC4',
+    descricao: 'THL'
+}
+let arrayDesmontagens = [b3saD, abevD, mgluD, valeD, bbdcD]
 
 //************************************************************************************************** */
 // Estruturas que podem ser montadas
 // BBDC4
-let bbdcM1 = ["BBDCC170", "Compra", "BBDC4"] 
-let bbdcM2 = ["BBDCB166", "Venda", "BBDC4"]
+let bbdcM1 = ["BBDCC170", 1, 1, "Compra", "BBDC4"] 
+let bbdcM2 = ["BBDCB166", 1, 1, "Venda", "BBDC4"]
 let bbdcMM1= {
-    status: true,
+    status: false,
     opcoes: [bbdcM1, bbdcM2],
     gasto: 0.27,
     ativo: 'BBDC4',

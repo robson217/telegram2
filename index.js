@@ -52,7 +52,7 @@ bot.command("desmontar", async (ctx) => {
 })
 //************************************************************************ */
 
-// Criando um menu de acompanhamento de Desmontagens
+// Criando um menu de acompanhamento de Montagens
 const menuM = new Menu("montar", { onMenuOutdated: false })
 menuM.dynamic(async () => {
     const range = new MenuRange()
