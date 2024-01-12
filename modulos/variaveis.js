@@ -43,8 +43,8 @@ let valeD = {
 }
 // Seagull VALE3
 // THL BBDC4 
-let b1 = ["BBDCC170", 500, 0.75, "Venda", "BBDC4"]
-let b2 = ["BBDCB166", 500, 0.55, "Compra", "BBDC4"]
+let b1 = ["BBDCC170", 500, 0.75, "Compra", "BBDC4"]
+let b2 = ["BBDCB166", 500, 0.55, "Venda", "BBDC4"]
 let bbdcD = {
     status: true,
     opcoes: [b1, b2],
