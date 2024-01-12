@@ -1,25 +1,5 @@
 //************************************************************************************************** */
 // Estrutura já montadas
-// BBDC4
-let bbdcD1 = ["BBDCA174", 100, 0.15, "Compra", "BBDC4"] 
-let bbdcD2 = ["BBDCM157", 100, 0.11, "Compra", "BBDC4"]
-let bbdcD = {
-    status: true,
-    opcoes: [/*bbdcD1, */bbdcD2],
-    retorno: 60,
-    ativo: "BBDC4",
-    descricao: 'Compra de Call e Put'
-}
-// ITSA4
-let itsaD1 = ["ITSAA130", 300, 0.06, "Compra", "ITSA4"]
-let itsaD2 = ["ITSAM120", 300, 0.03, "Compra", "ITSA4"]
-let itsaD = {
-    status: true,
-    opcoes: [/*itsaD1, */itsaD2],
-    retorno: 80,
-    ativo: "ITSA4",
-    descricao: 'Compra de Call e Put'
-}
 // B3SA3
 let b3saD1 = ["B3SAA155", 100, 0.28, "Compra", "B3SA3"]
 let b3saD2 = ["B3SAM140", 100, 0.16, "Compra", "B3SA3"]
@@ -60,58 +40,18 @@ let mgluD = {
     ativo: 'MGLU3',
     descricao: 'Compra de Call e Put'
 }
-// SUZB3
-let suzbD1 = ["MGLUA245", 100, 0.09, "Compra", "SUZB3"]
-let suzbD2 = ["MGLUM20", 100, 0.14, "Compra", "SUZB3"]
-let suzbD = {
-    status: false,
-    opcoes: [suzbD1, suzbD2],
-    retorno: 80,
-    ativo: 'SUZB3',
-    descricao: 'Compra de Call e Put'
-}
-// BOVA11
-let bovaD1 = ["MGLUA245", 100, 0.09, "Compra", "BOVA11"]
-let bovaD2 = ["MGLUM20", 100, 0.14, "Compra", "BOVA11"]
-let bovaD = {
-    status: false,
-    opcoes: [bovaD1, bovaD2],
-    retorno: 80,
-    ativo: 'BOVA11',
-    descricao: 'Compra de Call e Put'
-}
-// PETR4
-let petrD1 = ["MGLUA245", 100, 0.09, "Compra", "PETR4"]
-let petrD2 = ["MGLUM20", 100, 0.14, "Compra", "PETR4"]
-let petrD = {
-    status: false,
-    opcoes: [petrD1, petrD2],
-    retorno: 80,
-    ativo: 'PETR4',
-    descricao: 'Compra de Call e Put'
-}
-// VALE3
-let valeD1 = ["MGLUA245", 100, 0.09, "Compra", "VALE3"]
-let valeD2 = ["MGLUM20", 100, 0.14, "Compra", "VALE3"]
+// Seagull VALE3
+let valeD1 = ["VALEN721", 200, 0.62, "Venda", "VALE3"]
+let valeD2 = ["VALEB771", 200, 2.10, "Compra", "VALE3"]
+let valeD3 = ["VALEB791", 200, 1.38, "Venda", "VALE3"]
 let valeD = {
-    status: false,
-    opcoes: [valeD1, valeD2],
+    status: true,
+    opcoes: [valeD1, valeD2, valeD3],
     retorno: 80,
     ativo: 'VALE3',
-    descricao: 'Compra de Call e Put'
-}
-// Seagull
-let rrrpD1 = ["RRRPM270", 100, 1.14, "Venda", "RRRP3"]
-let rrrpD2 = ["RRRPA275", 100, 1.39, "Compra", "RRRP3"]
-let rrrpD3 = ["RRRPA295", 100, 0.71, "Venda", "RRRP3"]
-let rrrpD = {
-    status: true,
-    opcoes: [rrrpD1, rrrpD2, rrrpD3],
-    retorno: 60,
-    ativo: 'RRRP3',
     descricao: 'Seagull'
 }
-let arrayDesmontagens = [bbdcD, itsaD, b3saD, ggbrD, abevD, mgluD, suzbD, bovaD, petrD, valeD, rrrpD]
+let arrayDesmontagens = [b3saD, ggbrD, abevD, mgluD, valeD]
 
 //************************************************************************************************** */
 // Estruturas que podem ser montadas
