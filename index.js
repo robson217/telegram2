@@ -98,7 +98,7 @@ let num = 0
 // Executa a Analise das Compras combinadas de Call e Put
 
 const analise = setInterval(setIntervalo, 480000)//480000
-async function setIntervalo() { // A cada 14 minutos executa esta função
+async function setIntervalo() { // Each 14 minutes execute this function
     let status = await getAPI.statusMarket() // Consulta o status do mercado
     if (status === 'A' || status === 'P') {
         // Avalia desmontagem de Estrutura
